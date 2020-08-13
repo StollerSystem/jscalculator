@@ -17,37 +17,23 @@ function multiply(number1, number2) {
 }
 
 // User Interface Logic
+
 $(document).ready(function() {
-  $("form#add").submit(function(event) {
+  $("form#calculator").submit(function() {
     event.preventDefault();
-    const number1 = parseInt($(".First-Number").val());
-    const number2 = parseInt($(".Second-Number").val());
-    const result = add(number1, number2);
-    $(".result").text(result); 
-  });
-
-  $("form#subtract").submit(function(event) {
-    event.preventDefault();
-    const number1 = parseInt($(".First-Number-sub").val());
-    const number2 = parseInt($(".Second-Number-sub").val());
-    const result = subtract(number1, number2);
-    $(".result").text(result); 
-  });
-
-  $("form#multiply").submit(function(event) {
-    event.preventDefault();
-    const number1 = parseInt($(".First-Number-mult").val());
-    const number2 = parseInt($(".Second-Number-mult").val());
-    const result = multiply(number1, number2);
-    $(".result").text(result); 
-  });
-
-  $("form#divide").submit(function(event) {
-    event.preventDefault();
-    const number1 = parseInt($(".First-Number-div").val());
-    const number2 = parseInt($(".Second-Number-div").val());
-    const result = divide(number1, number2);
-    $(".result").text(result); 
+    const number1 = parseInt($("#input1").val());
+    const number2 = parseInt($("#input2").val());
+    const operator = $("input:radio[name=operator]:checked").val();
+    let result;
+    if (operator === "add") {
+      result = add(number1, number2);
+    } else if (operator === "subtract") {
+      result = subtract(number1, number2);
+    } else if (operator === "multiply") {
+      result = multiply(number1, number2);
+    } else if (operator === "divide") {
+      result = divide(number1, number2);
+    }
+    $("#output").text(result);
   });
 });
-
